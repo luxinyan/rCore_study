@@ -5,5 +5,6 @@
 #[macro_use]
 mod io;
 mod init;
+mod interupt;
 mod lang_items;
 mod sbi;
