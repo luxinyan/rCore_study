@@ -4,6 +4,7 @@
 
 #[macro_use]
 mod io;
+mod context;
 mod init;
 mod interupt;
 mod lang_items;
