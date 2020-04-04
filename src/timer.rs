@@ -1,5 +1,4 @@
 use crate::sbi::set_stimer;
-use riscv::register::satp::set;
 use riscv::register::{sie, time};
 
 pub static mut TICKS: usize = 0;
