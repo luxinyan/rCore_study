@@ -26,6 +26,7 @@ pub fn init() {
 pub fn rust_trap(tf: &mut TrapFrame) {
     match tf.scause.cause() {
         Trap::Exception(Exception::Breakpoint) => breakpoint(&mut tf.sepc),
+        Trap::Exception(Exception::IllegalInstruction) => illegal_instruction(&mut tf.sepc),
         Trap::Interrupt(Interrupt::SupervisorTimer) => super_timer(),
         _ => panic!("undefined trap!"),
     }
@@ -34,6 +35,10 @@ pub fn rust_trap(tf: &mut TrapFrame) {
 fn breakpoint(sepc: &mut usize) {
     println!("a breakpoint set @0x{:x}", sepc);
     *sepc += 2;
+}
+
+fn illegal_instruction(sepc: &mut usize) {
+    panic!("illegal instruction at @0x{:x}", sepc);
 }
 
 fn super_timer() {
