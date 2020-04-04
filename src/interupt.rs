@@ -1,5 +1,5 @@
 use crate::context::TrapFrame;
-use riscv::register::{scause, sepc, sscratch, stvec};
+use riscv::register::{scause, sepc, sscratch, sstatus, stvec};
 
 global_asm!(include_str!("trap/trap.asm"));
 
@@ -11,6 +11,9 @@ pub fn init() {
 
         sscratch::write(0);
         stvec::write(__alltraps as usize, stvec::TrapMode::Direct);
+
+        sstatus::set_sie();
+        println!("++++ setup interrupt! ++++");
     }
 }
 
