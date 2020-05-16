@@ -1,4 +1,6 @@
 mod frame_allocator;
+pub mod paging;
+
 use crate::consts::*;
 use buddy_system_allocator::LockedHeap;
 
@@ -25,6 +27,10 @@ pub fn init_heap() {
             .lock()
             .init(HEAP.as_ptr() as usize, KERNEL_HEAP_SIZE);
     }
+}
+
+pub fn access_pa_via_va(pa: usize) -> usize {
+    pa + PHYSICAL_MEMORY_OFFSET
 }
 
 #[global_allocator]
