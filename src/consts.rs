@@ -1,5 +1,5 @@
 pub const KERNEL_BEGIN_PADDR: usize = 0x80_200_000;
-pub const KERNEL_BEGIN_VADDR: usize = 0x80_200_000;
+pub const KERNEL_BEGIN_VADDR: usize = 0xffffffffc0200000;
 
 pub const PHYSICAL_MEMORY_END: usize = 0x88_000_000;
 
